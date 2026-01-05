@@ -70,6 +70,13 @@ const Dashboard = () => {
 
   /* ---------------- UI ---------------- */
 
+  const smoothScrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="dashboard">
       <StatusHeader overall={data.overall} updatedAt={data.updatedAt} />
@@ -91,7 +98,10 @@ const Dashboard = () => {
         <div className="pagination">
           <button
             disabled={page === 1}
-            onClick={() => setPage((p) => p - 1)}
+            onClick={() => {
+              setPage((p) => p - 1);
+              smoothScrollTop();
+            }}
           >
             Prev
           </button>
@@ -102,7 +112,10 @@ const Dashboard = () => {
 
           <button
             disabled={page === totalPages}
-            onClick={() => setPage((p) => p + 1)}
+            onClick={() => {
+              setPage((p) => p + 1);
+              smoothScrollTop();
+            }}
           >
             Next
           </button>
