@@ -62,12 +62,37 @@ const ServicesTable = ({ services }: Props) => {
     }
   };
 
+  // if (services.length === 0) {
+  //   return (
+  //     <div className="panel empty-state">
+  //       <SearchX size={28} />
+  //       <p>No services match your search.</p>
+  //     </div>
+  //   );
+  // }
   if (services.length === 0) {
     return (
-      <div className="panel empty-state">
-        <SearchX size={28} />
-        <p>No services match your search.</p>
-      </div>
+      <table className="services-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th className="desktop-only">Region</th>
+            <th>Status</th>
+            <th className="desktop-only">Latency</th>
+            <th className="desktop-only">Uptime</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colSpan={5}>
+              <div className="empty-state">
+                <SearchX size={28} />
+                <p>No services match your search.</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     );
   }
 

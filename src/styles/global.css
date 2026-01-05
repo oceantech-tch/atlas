@@ -65,9 +65,7 @@ h1, h2, h3, th {
 
 .dashboard {
     display: grid;
-    gap: 16px;
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-    /* grid-auto-rows: min-content; */
     gap: 16px;
 }
 
@@ -109,7 +107,8 @@ h1, h2, h3, th {
     display: flex;
     flex-direction: column;
     min-height: 420px;
-    grid-column: 1;
+    grid-column: 1 / -1;
+    min-width: 0;
 }
 
 /* =========================
@@ -179,14 +178,15 @@ td {
 }
 
 .empty-state {
-    min-height: 220px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    color: var(--text-muted);
+    min-height: 240px;
+    width: 100%;
     text-align: center;
+    color: var(--text-muted);
+    gap: 6px;
 }
 
 .service-row {
