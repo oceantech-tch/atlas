@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+# Atlas — Cloud Infrastructure Status Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Atlas is a frontend-focused status dashboard that monitors live cloud infrastructure data and presents it in a clear, stable, and responsive way.
 
-Currently, two official plugins are available:
+It was built to explore how real production status data should be **displayed**, not just fetched — especially under imperfect conditions like partial outages, missing fields, empty results, and frequent updates.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The focus of this project is UI behavior, layout stability, and observability-style UX.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What Atlas Does
 
-## Expanding the ESLint configuration
+- Fetches live infrastructure status data from a real provider  
+- Polls automatically to keep data up to date  
+- Displays services, regions, status, latency, and uptime  
+- Supports search and pagination without breaking layout  
+- Adapts interaction patterns between desktop and mobile  
+- Handles empty states and filtered views gracefully  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The goal is to make the interface **predictable and calm**, even when the underlying data is not.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Why This Project Exists
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Many dashboards work well when data is perfect, but struggle when:
+- results are empty  
+- rows are filtered down to one item  
+- fields are missing or delayed  
+- updates happen frequently  
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Atlas was built to handle those cases intentionally.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Layout should not jump.  
+Tables should not shrink.  
+The interface should not feel fragile.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Key UX Decisions
+
+- **Live polling instead of manual refresh**  
+  Mirrors how real status dashboards behave.
+
+- **Stable containers**  
+  Filtering or pagination never collapses the layout.
+
+- **Different interaction models by screen size**  
+  - Desktop: full table view with all key metrics visible  
+  - Mobile: compact rows with expandable details  
+
+- **Status-first design**  
+  Status is always visible and readable before secondary metrics.
+
+- **Explicit empty states**  
+  Empty search results are treated as a valid UI state, not an error.
+
+---
+
+## Tech Stack
+
+### Frontend
+- React  
+- TypeScript  
+- Vite  
+- CSS (custom, no UI frameworks)  
+- lucide-react (icons)
+
+### Data
+- Live infrastructure status data
+
+---
+
+## Project Structure (simplified)
+
+`src/` <br />
+` components/` <br />
+`  Dashboard` <br />
+`  ServicesTable` <br />
+`  StatusHeader` <br />
+`  IncidentFeed` <br /><br />
+`lib/` <br />
+` fetchStatus` <br />
+` parseRegion` <br /><br />
+`types/` <br />
+` status.ts` <br /><br />
+`styles/` <br />
+` global.css` <br /><br />
+
+---
+
+## Current State
+
+- Functional and stable  
+- Handles real data correctly  
+- Responsive across screen sizes  
+- Designed to behave well under edge cases  
+
+This project is complete and production-oriented in scope.
+
+---
+
+## Notes
+
+Atlas is intended to demonstrate frontend judgment:
+- layout control  
+- state handling  
+- UI resilience  
+- clarity over decoration  
+
+It is intentionally focused and intentionally limited.
