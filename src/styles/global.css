@@ -80,11 +80,11 @@ h1, h2, h3, th {
     color: var(--accent);
 }
 
-@keyframes spin (
+@keyframes spin {
     to {
         transform: rotate(360deg);
     }
-)
+}
 
 .dashboard {
     display: grid;
