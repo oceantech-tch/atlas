@@ -1,3 +1,5 @@
+import atlasLogo from "../assets/atlas-logo.svg";
+
 interface Props {
     overall: string;
     updatedAt: string;
@@ -5,8 +7,15 @@ interface Props {
 
 const StatusHeader = ({ overall, updatedAt }: Props) => {
     return (
-        <section className="status-header">
-            <h1>Atlas</h1>
+        <section className="status-header atlas-header">
+            <div className="atlas-brand">
+                <img
+                    src={atlasLogo}
+                    alt="Atlas"
+                    className="atlas-logo"
+                />
+                <h1>Atlas</h1>
+            </div>
             <p className="overall">{overall}</p>
             <span className="updated">
                 Last updated: {new Date(updatedAt).toLocaleString()}
