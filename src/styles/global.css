@@ -34,10 +34,17 @@
    BASE
 ========================= */
 
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: Inter, system-ui, sans-serif;
     background: var(--bg-main);
     color: var(--text-main);
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, th {
@@ -247,8 +254,12 @@ td {
 .services-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 100%;
+    max-width: 100%;
     table-layout: fixed;
+}
+
+.service-cell {
+    min-width: 0;
 }
 
 .services-table th,
@@ -424,6 +435,8 @@ td {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 /* Status variants */
