@@ -325,18 +325,10 @@ td {
   background: rgba(255, 255, 255, 0.03);
 }
 
-.row-chevron {
-    transition: transform .2s ease;
-    opacity: 0.6;
-}
-
-.row-chevron.rotated {
-    transform: rotate(180deg);
-}
-
 /* Prevent text from breaking layout */
 .truncate {
-  max-width: 420px;
+  display: block;
+  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -524,4 +516,5 @@ td {
     .desktop-only {
         display: none;
     }
+
 }

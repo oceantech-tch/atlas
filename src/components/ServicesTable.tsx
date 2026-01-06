@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Service } from "../types/status";
 import {
   SearchX,
@@ -7,7 +7,6 @@ import {
   AlertOctagon,
   Wrench,
   Activity,
-  ChevronDown,
 } from "lucide-react";
 
 interface Props {
@@ -120,12 +119,10 @@ const ServicesTable = ({ services, statusHistory }: Props) => {
             : hasDegraded
             ? "flapping"
             : "stable";
-          // -------------------------------------------------------------
 
           return (
-            <>
+            <React.Fragment key={service.id}>
               <tr
-                key={service.id}
                 className={`service-row ${isOpen ? "open" : ""}`}
                 onClick={() =>
                   isMobile
@@ -135,13 +132,6 @@ const ServicesTable = ({ services, statusHistory }: Props) => {
               >
                 <td className="service-cell">
                   <span className="truncate">{service.name}</span>
-
-                  {isMobile && (
-                    <ChevronDown
-                      size={14}
-                      className={`row-chevron ${isOpen ? "rotated" : ""}`}
-                    />
-                  )}
                 </td>
 
                 <td>
@@ -195,7 +185,7 @@ const ServicesTable = ({ services, statusHistory }: Props) => {
                   </td>
                 </tr>
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </tbody>
